@@ -77,6 +77,8 @@ class DeclarationBundlerPlugin
 				//exclude import statements
 				excludeLine = excludeLine || (/import ([a-z0-9A-Z_-]+) = require\(/).test(line);
 
+				excludeLine = excludeLine || (/\s*?(import|export).*?from\s("|')\.+.*?("|');/).test(line);
+
 				//if defined, check for excluded references
 				if(!excludeLine && this.excludedReferences && line.indexOf("<reference") !== -1)
 				{
